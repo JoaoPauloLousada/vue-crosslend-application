@@ -13,7 +13,6 @@ const userModule = {
   },
   actions: {
     async getUserData ({ commit, state }) {
-      console.log('ACTION getUserData')
       try {
         const data = await getUser()
         commit('updateUserData', { data })
