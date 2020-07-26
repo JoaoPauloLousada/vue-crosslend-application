@@ -59,7 +59,7 @@ export default {
       title: 'Filter by',
       dateFrom: null,
       dateTo: null,
-      isClosed: false
+      isClosed: true
     }
   },
   computed: {

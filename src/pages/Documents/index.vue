@@ -3,10 +3,10 @@
     <div class="col">
       <h1 class="title font-weight-bold text-gray-700">Documents</h1>
       <div class="row">
-        <div class="col-3 col-md-4">
+        <div class="col-3 col-md-4 col-lg-3">
           <DocumentsFilter />
         </div>
-        <div class="col-9 col-md-8 documents-table">
+        <div class="col-9 col-md-8 col-lg-9 documents-table">
           <DocumentsTable :documentsList="documentsList" />
         </div>
       </div>
