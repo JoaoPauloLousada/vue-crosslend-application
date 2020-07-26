@@ -110,9 +110,10 @@ export default {
     z-index: 9;
     width: 75vw;
     left: 0;
+    max-width: 400px;
 
     &.closed {
-      transform: translateX(-85%);
+      transform: translateX(-90%);
 
       .title button, .date-picker, .filter-buttons {
         display: none;
@@ -122,6 +123,17 @@ export default {
         p {
           transform: rotateZ(-90deg);
           margin-right: -25px;
+          margin-top: 5%;
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-down(xs) {
+    &.closed {
+      transform: translateX(-85%);
+      .title {
+        p {
           margin-top: 10%;
         }
       }
