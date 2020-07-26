@@ -2,8 +2,8 @@
   <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col">Document Name</th>
-          <th scope="col">Date</th>
+          <th scope="col" @click="$emit('name-clicked')">Document Name</th>
+          <th scope="col" @click="$emit('date-clicked')">Date</th>
         </tr>
       </thead>
       <tbody>
@@ -47,6 +47,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  th {
+    cursor: pointer
+  }
 </style>

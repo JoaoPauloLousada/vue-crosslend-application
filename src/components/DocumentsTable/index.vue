@@ -3,7 +3,9 @@
     <Table
       :list="filteredList"
       :currentPage="paginator.currentPage"
-      :itemsPerPage="paginator.itemsPerPage" />
+      :itemsPerPage="paginator.itemsPerPage"
+      @name-clicked="sortByName"
+      @date-clicked="sortByDate" />
     <Paginator
       :currentPage="paginator.currentPage"
       :totalOfPages="paginator.total"
@@ -58,7 +60,9 @@ export default {
       'documentsNextPage',
       'documentsLastPage',
       'setTotalOfPages',
-      'setFilteredList'
+      'setFilteredList',
+      'sortByName',
+      'sortByDate'
     ])
   }
 }
@@ -67,5 +71,6 @@ export default {
 <style lang="scss" scoped>
   .table-wrapper {
     background-color: $bg-secondary;
+    @include defaultShadow();
   }
 </style>

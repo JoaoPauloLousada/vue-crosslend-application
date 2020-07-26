@@ -1,5 +1,5 @@
 import { getDocuments as retrieveDocuments } from '../../services/crosslend-api/documents'
-import { filterDocumentsListByExtensions, ALLOWED_FORMATS } from '@/services/helpers/documents'
+import { filterDocumentsListByExtensions, ALLOWED_FORMATS, filterByDate, sortByDate, sortByName } from '@/services/helpers/documents'
 
 const documentsModule = {
   state: {
@@ -35,8 +35,9 @@ const documentsModule = {
       }
     },
     setFilteredList ({ commit, state }) {
-      const filteredList = filterDocumentsListByExtensions(ALLOWED_FORMATS, state.list)
-      commit('updateFilteredDocuments', { filteredList })
+      Promise.resolve(filterDocumentsListByExtensions(ALLOWED_FORMATS, state.list))
+        .then(filteredList => sortByDate(filteredList))
+        .then(sortedList => commit('updateFilteredDocuments', { filteredList: sortedList }))
     },
     documentsfirstPage ({ commit }) {
       commit('updateCurrentPage', { currentPage: 1 })
@@ -62,6 +63,22 @@ const documentsModule = {
       } else {
         commit('updateTotalOfPages', { total: total + 1 })
       }
+    },
+    filterByDate ({ commit, dispatch, state }, dates) {
+      Promise.resolve(filterDocumentsListByExtensions(ALLOWED_FORMATS, state.list))
+        .then(filteredList => sortByDate(filteredList))
+        .then(sortedList => commit('updateFilteredDocuments', { filteredList: filterByDate(sortedList, dates) }))
+        .then(() => dispatch('documentsfirstPage'))
+    },
+    sortByName ({ commit, dispatch, state }) {
+      Promise.resolve(sortByName(state.filteredList))
+        .then(sortedList => commit('updateFilteredDocuments', { filteredList: sortedList }))
+        .then(() => dispatch('documentsfirstPage'))
+    },
+    sortByDate ({ commit, dispatch, state }) {
+      Promise.resolve(sortByDate(state.filteredList))
+        .then(sortedList => commit('updateFilteredDocuments', { filteredList: sortedList }))
+        .then(() => dispatch('documentsfirstPage'))
     }
   }
 }

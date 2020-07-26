@@ -3,6 +3,7 @@
     <div class="col">
       <h1 class="title font-weight-bold">Documents</h1>
       <div class="row">
+        <DocumentsFilter />
         <div class="col-9">
           <DocumentsTable :documentsList="documentsList" />
         </div>
@@ -14,10 +15,12 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import DocumentsTable from '@/components/DocumentsTable'
+import DocumentsFilter from '@/components/DocumentsFilter'
 
 export default {
   components: {
-    DocumentsTable
+    DocumentsTable,
+    DocumentsFilter
   },
   created () {
     if (this.documentsList.length <= 0) {

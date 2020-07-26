@@ -6,3 +6,9 @@ export const formatDate = (date) => {
   const year = putLeadingZero(date.getFullYear(), 4)
   return `${day}-${month}-${year}`
 }
+
+export const firstDateIsGreater = (date1, date2) => {
+  const firstDate = new Date(date1)
+  const secondDate = new Date(date2)
+  return firstDate.getTime() > secondDate.getTime()
+}
