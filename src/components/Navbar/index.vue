@@ -2,23 +2,22 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-0">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler border-0 text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <!-- <span class="navbar-toggler-icon"></span> -->
-      <Menu />
+      <MenuIcon />
     </button>
 
-    <div class="collapse navbar-collapse h-100" id="navbarSupportedContent">
-      <ul class="navbar-nav align-items-center ml-auto h-100 pr-5 border-right">
-        <li class="nav-item active h-100 d-flex align-items-center" v-for="item in menu.items" :key="item.id">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav align-items-md-center align-items-start justify-content-md-center ml-auto h-100 pr-lg-5 border-right">
+        <li class="nav-item active h-100 d-flex align-items-center px-3 px-lg-0" v-for="item in menu.items" :key="item.id">
           <router-link class="nav-link w-100 h-100 d-flex align-items-center" :to="item.route">{{item.name}}</router-link>
         </li>
       </ul>
 
-      <div class="d-none d-lg-flex text-light h-100 align-items-center">
-        <div class="avatar">
+      <div class="d-flex text-light h-100 align-items-center">
+        <div class="avatar d-none d-lg-block">
           <img src="@/assets/images/avatar.png" class="rounded-circle h-100" alt="user avatar">
         </div>
-        <div class="d-flex flex-column justify-content-center">
-          <span>{{user | firstName}}</span>
+        <div class="name-area d-flex flex-column justify-content-center p-3 p-lg-0">
+          <span class="mb-2 mb-lg-0">{{user | firstName}}</span>
           <span>{{user | lastName}}</span>
         </div>
       </div>
@@ -28,11 +27,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import Menu from 'vue-material-design-icons/Menu.vue'
+import MenuIcon from 'vue-material-design-icons/Menu.vue'
 
 export default {
   components: {
-    Menu
+    MenuIcon
   },
   computed: {
     ...mapState({
@@ -65,12 +64,51 @@ export default {
   padding-left: 1.875rem;
   height: 36px;
 }
+.name-area {
+  @include media-breakpoint-down(md) {
+    color: $primary;
+  }
+}
 .nav-link {
   transition: all 350ms;
   &:hover {
     background-color: white;
     color: map-get($map: $theme-colors, $key: primary) !important;
     border-bottom: 1px solid #ccc;
+  }
+}
+.navbar-collapse {
+  @include media-breakpoint-down(md) {
+    @include defaultShadow();
+    background-color: $white;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    .navbar-nav {
+      border-bottom: 1px solid $gray-700;
+      .nav-item {
+        width: 100%;
+        &:hover {
+          background-color: $primary;
+          .nav-link {
+            color: $white;
+          }
+        }
+        .nav-link {
+          color: $primary;
+          &:hover {
+            background-color: inherit;
+            color: $white!important;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    height: 100%;
   }
 }
 </style>

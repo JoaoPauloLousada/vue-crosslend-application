@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="min-vh-100">
     <Navbar />
     <Spinner :show="isLoading" />
     <div class="container-fluid" v-show="!isLoading">
