@@ -2,7 +2,7 @@
   <!-- <div class="col-3"> -->
     <div class="filter-wrapper rounded" :class="{closed: isClosed}">
       <div class="title d-flex mb-4">
-        <p class="font-weight-bold" @click="open">{{title}}</p>
+        <p class="font-weight-bold text-gray-700" @click="open">{{title}}</p>
         <button type="button" class="close d-md-none" aria-label="Close" @click="close">
           <span aria-hidden="true">&times;</span>
         </button>

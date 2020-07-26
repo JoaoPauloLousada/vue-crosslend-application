@@ -10,6 +10,9 @@ $theme-colors: (
 $bg-secondary: #E0E0E0;
 $color-muted: #cbcbcb;
 
+$gray-600: #5e5e5e;
+$gray-700: #464646;
+
 @mixin defaultShadow() {
   -webkit-box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.3);
      -moz-box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.3);

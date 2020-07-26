@@ -1,12 +1,12 @@
 <template>
   <div class="row">
     <div class="col">
-      <h1 class="title font-weight-bold">Documents</h1>
+      <h1 class="title font-weight-bold text-gray-700">Documents</h1>
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 col-md-4">
           <DocumentsFilter />
         </div>
-        <div class="col-9 documents-table">
+        <div class="col-9 col-md-8 documents-table">
           <DocumentsTable :documentsList="documentsList" />
         </div>
       </div>

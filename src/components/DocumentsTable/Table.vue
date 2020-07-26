@@ -2,15 +2,15 @@
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
-        <tr>
-          <th scope="col" @click="$emit('name-clicked')">Document Name</th>
-          <th scope="col" @click="$emit('date-clicked')">Date</th>
+        <tr class="d-flex">
+          <th class="text-gray-600 w-50" scope="col" @click="$emit('name-clicked')">Document Name</th>
+          <th class="text-gray-600 w-50 text-center" scope="col" @click="$emit('date-clicked')">Date</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) in slicedList" :key="index" class="d-flex">
-          <td>{{item.name}}</td>
-          <td>{{item.date | formattedDate}}</td>
+          <td class="text-gray-600 font-weight-bold" >{{item.name}}</td>
+          <td class="text-gray-600 font-weight-bold text-center">{{item.date | formattedDate}}</td>
         </tr>
       </tbody>
     </table>
@@ -50,6 +50,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.table {
+  font-size: .875rem;
+}
   th {
     cursor: pointer
   }
