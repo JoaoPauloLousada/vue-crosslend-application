@@ -18,8 +18,8 @@
         <img src="@/assets/images/avatar.png" class="rounded-circle h-100" alt="user avatar">
       </div>
       <div class="d-flex flex-column justify-content-center">
-        <span>First Name</span>
-        <span>Last Name</span>
+        <span>{{user | firstName}}</span>
+        <span>{{user | lastName}}</span>
       </div>
     </div>
   </nav>
@@ -31,8 +31,21 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState({
-      menu: state => state.ui.menu
+      menu: state => state.ui.menu,
+      user: state => state.user.data
     })
+  },
+  filters: {
+    firstName: function (user) {
+      if (!user) return ''
+      if (!user.profile) return ''
+      return user.profile.firstName || ''
+    },
+    lastName: function (user) {
+      if (!user) return ''
+      if (!user.profile) return ''
+      return user.profile.lastName || ''
+    }
   }
 }
 </script>

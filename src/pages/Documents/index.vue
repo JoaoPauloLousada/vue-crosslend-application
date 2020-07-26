@@ -27,6 +27,9 @@ export default {
       this.setIsLoading(true)
       this.getDocuments()
     }
+    if (!this.user.data) {
+      this.getUserData()
+    }
   },
   watch: {
     documentsList: function (val) {
@@ -35,13 +38,15 @@ export default {
   },
   computed: {
     ...mapState({
-      documentsList: state => state.documents.list
+      documentsList: state => state.documents.list,
+      user: state => state.user.data
     })
   },
   methods: {
     ...mapActions({
       getDocuments: 'getDocuments',
-      setIsLoading: 'setIsLoading'
+      setIsLoading: 'setIsLoading',
+      getUserData: 'getUserData'
     })
   }
 }

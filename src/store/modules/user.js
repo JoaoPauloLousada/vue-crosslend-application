@@ -1,14 +1,25 @@
+import { getUser } from '@/services/crosslend-api/user'
+
 const userModule = {
   state: {
-    user: {}
+    data: {
+
+    }
   },
   mutations: {
-    updateUserName (state, payload) {
-      state.userName = payload.userName
+    updateUserData (state, payload) {
+      state.data = payload.data
     }
   },
   actions: {
-    async findRepositories ({ commit, state }) {
+    async getUserData ({ commit, state }) {
+      console.log('ACTION getUserData')
+      try {
+        const data = await getUser()
+        commit('updateUserData', { data })
+      } catch (e) {
+
+      }
     }
   }
 }
