@@ -1,5 +1,6 @@
 <template>
-  <table class="table table-striped">
+  <div class="table-responsive">
+    <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col" @click="$emit('name-clicked')">Document Name</th>
@@ -7,12 +8,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in slicedList" :key="index">
+        <tr v-for="(item, index) in slicedList" :key="index" class="d-flex">
           <td>{{item.name}}</td>
           <td>{{item.date | formattedDate}}</td>
         </tr>
       </tbody>
     </table>
+  </div>
 </template>
 
 <script>
@@ -50,5 +52,14 @@ export default {
 <style lang="scss" scoped>
   th {
     cursor: pointer
+  }
+  tbody tr {
+    background-color: white
+  }
+  tbody td {
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 </style>

@@ -1,14 +1,14 @@
 <template>
-  <div class="col-3">
-    <div class="w-100 filter-wrapper rounded">
-      <div class="title d-flex justify-content-between mb-4">
-        <p class="font-weight-bold m-0">{{title}}</p>
-        <button type="button" class="close d-md-none" aria-label="Close">
+  <!-- <div class="col-3"> -->
+    <div class="filter-wrapper rounded" :class="{closed: isClosed}">
+      <div class="title d-flex mb-4">
+        <p class="font-weight-bold" @click="open">{{title}}</p>
+        <button type="button" class="close d-md-none" aria-label="Close" @click="close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
-      <div class="mb-4">
+      <div class="mb-4 date-picker">
         <DatePicker v-model="dateFrom" :popover="{ placement: 'bottom', visibility: 'click' }">
           <button class="btn btn-block btn__calendar d-flex align-items-center">
             <span class="mr-2"><CalendarBlank fillColor="#646464" /></span>
@@ -17,7 +17,7 @@
           </button>
         </DatePicker>
       </div>
-      <div class="mb-4">
+      <div class="mb-4 date-picker">
         <DatePicker v-model="dateTo" :popover="{ placement: 'bottom', visibility: 'click' }">
           <button class="btn btn-block btn__calendar d-flex align-items-center">
             <span class="mr-2"><CalendarBlank fillColor="#646464" /></span>
@@ -27,9 +27,7 @@
         </DatePicker>
       </div>
 
-      <Calendar class="d-none"/>
-
-      <div class="d-flex flex-column">
+      <div class="flex-column filter-buttons">
         <button
           type="button"
           class="btn text-light btn-lg mb-4 font-weight-bold btn--apply"
@@ -40,12 +38,11 @@
           @click="clearFilters">Clear filters</button>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
 import { mapActions } from 'vuex'
-import Calendar from 'v-calendar/lib/components/calendar.umd'
 import DatePicker from 'v-calendar/lib/components/date-picker.umd'
 import CalendarBlank from 'vue-material-design-icons/CalendarBlank.vue'
 import ChevronDown from 'vue-material-design-icons/ChevronDown.vue'
@@ -53,7 +50,6 @@ import { formatDate, firstDateIsGreater } from '@/services/helpers/date'
 
 export default {
   components: {
-    Calendar,
     DatePicker,
     CalendarBlank,
     ChevronDown
@@ -62,7 +58,8 @@ export default {
     return {
       title: 'Filter by',
       dateFrom: null,
-      dateTo: null
+      dateTo: null,
+      isClosed: false
     }
   },
   computed: {
@@ -86,6 +83,12 @@ export default {
       this.setFilteredList()
       this.documentsfirstPage()
     },
+    close () {
+      this.isClosed = true
+    },
+    open () {
+      this.isClosed = false
+    },
     ...mapActions({
       filterByDate: 'filterByDate',
       setFilteredList: 'setFilteredList',
@@ -100,6 +103,40 @@ export default {
   @include defaultShadow();
   background-color: $bg-secondary;
   padding: .9375rem;
+  transition: all 650ms;
+
+  @include media-breakpoint-down(sm) {
+    position: absolute;
+    z-index: 9;
+    width: 75vw;
+    left: 0;
+
+    &.closed {
+      transform: translateX(-85%);
+
+      .title button, .date-picker, .filter-buttons {
+        display: none;
+      }
+      .title {
+        justify-content: flex-end;
+        p {
+          transform: rotateZ(-90deg);
+          margin-right: -25px;
+          margin-top: 10%;
+        }
+      }
+    }
+  }
+}
+.title {
+  justify-content: space-between;
+  p {
+    transition: all 650ms;
+    margin: 0;
+  }
+}
+.filter-buttons {
+  display: flex;
 }
 .btn--apply, .btn--clear {
   border-radius: 5px;

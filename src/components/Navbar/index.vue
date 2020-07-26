@@ -13,7 +13,7 @@
       </ul>
     </div>
 
-    <div class="text-light d-flex h-100 align-items-center">
+    <div class="d-none d-md-flex text-light h-100 align-items-center">
       <div class="avatar">
         <img src="@/assets/images/avatar.png" class="rounded-circle h-100" alt="user avatar">
       </div>

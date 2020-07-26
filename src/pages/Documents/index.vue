@@ -3,8 +3,10 @@
     <div class="col">
       <h1 class="title font-weight-bold">Documents</h1>
       <div class="row">
-        <DocumentsFilter />
-        <div class="col-9">
+        <div class="col-3">
+          <DocumentsFilter />
+        </div>
+        <div class="col-9 documents-table">
           <DocumentsTable :documentsList="documentsList" />
         </div>
       </div>
@@ -56,5 +58,11 @@ export default {
   .title {
     margin: 1.875rem 0;
     font-size: 1.25rem;
+  }
+  .documents-table {
+    @include media-breakpoint-down(sm) {
+      max-width: 90%;
+      margin-left: 10%;
+    }
   }
 </style>

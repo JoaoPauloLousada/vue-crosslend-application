@@ -1,2 +1,6 @@
 @import "~bootstrap/scss/bootstrap.scss";
 @import './typography'; 
+
+html, body {
+  overflow-x: hidden;
+}
