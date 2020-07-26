@@ -1,5 +1,5 @@
 <template>
-  <div class="table-responsive">
+  <div>
     <table class="table table-striped">
       <thead>
         <tr class="d-flex">
@@ -51,6 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 .table {
+  table-layout: fixed;
   font-size: .875rem;
 }
   th {
