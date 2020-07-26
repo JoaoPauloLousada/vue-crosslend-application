@@ -18,15 +18,18 @@ const uiModule = {
           route: '/contacts'
         }
       ]
-    }
+    },
+    isLoading: false
   },
   mutations: {
-    updateUserName (state, payload) {
-      state.userName = payload.userName
+    updateIsLoading (state, payload) {
+      state.isLoading = payload.isLoading
     }
   },
   actions: {
-
+    setIsLoading ({ commit }, isLoading) {
+      commit('updateIsLoading', { isLoading })
+    }
   }
 }
 

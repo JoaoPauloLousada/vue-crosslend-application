@@ -20,7 +20,15 @@ export default {
     DocumentsTable
   },
   created () {
-    if (this.documentsList.length <= 0) this.getDocuments()
+    if (this.documentsList.length <= 0) {
+      this.setIsLoading(true)
+      this.getDocuments()
+    }
+  },
+  watch: {
+    documentsList: function (val) {
+      this.setIsLoading(false)
+    }
   },
   computed: {
     ...mapState({
@@ -29,7 +37,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getDocuments: 'getDocuments'
+      getDocuments: 'getDocuments',
+      setIsLoading: 'setIsLoading'
     })
   }
 }

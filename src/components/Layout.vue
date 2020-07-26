@@ -1,7 +1,8 @@
 <template>
   <div>
     <Navbar />
-    <div class="container-fluid">
+    <Spinner :show="isLoading" />
+    <div class="container-fluid" v-show="!isLoading">
       <div class="row">
         <div class="col">
           <slot></slot>
@@ -12,11 +13,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Navbar from './Navbar'
+import Spinner from './Spinner'
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    Spinner
+  },
+  computed: {
+    ...mapState({
+      isLoading: state => state.ui.isLoading
+    })
   }
 }
 </script>
