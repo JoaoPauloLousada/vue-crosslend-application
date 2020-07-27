@@ -42,5 +42,5 @@ npm install
 npm run serve
 ```
 
-##IMPORTANT
+## IMPORTANT
 Go to Documents Page to check the main functionalities of the application
