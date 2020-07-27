@@ -4,7 +4,10 @@
       <thead>
         <tr class="d-flex">
           <th class="text-gray-600 w-50" scope="col" @click="$emit('name-clicked')">Document Name</th>
-          <th class="text-gray-600 w-50 text-center" scope="col" @click="$emit('date-clicked')">Date</th>
+          <th class="text-gray-600 w-50 text-center" scope="col" @click="$emit('date-clicked')">
+            Date
+            <ArrowDown />
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -19,7 +22,12 @@
 
 <script>
 import { formatDate } from '@/services/helpers/date'
+import ArrowDown from 'vue-material-design-icons/ChevronDown.vue'
+
 export default {
+  components: {
+    ArrowDown
+  },
   props: {
     list: {
       type: Array,
