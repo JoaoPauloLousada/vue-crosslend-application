@@ -5,7 +5,7 @@ import 'popper.js'
 import 'bootstrap'
 import App from './App.vue'
 import Store from './store'
-import Router from './Router'
+import Router from './router'
 
 Vue.config.productionTip = false
 
